@@ -1,11 +1,11 @@
 # vue-test
 
 ## Project setup
-```
-npm install
-```
+ * Clone repository
+ * Run `npm install`
 
 ### Compiles and hot-reloads for development
+Run the command below to preview in development mode the application. 
 ```
 npm run serve
 ```
@@ -19,6 +19,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
