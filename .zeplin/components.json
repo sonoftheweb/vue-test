@@ -1,0 +1,18 @@
+{
+  "plugins": [
+    {
+      "name": "zeplin-cli-connect-plugin-vue"
+    }
+  ],
+  "projects": [
+    "61d708521f9bda78c0f76955"
+  ],
+  "components": [
+    {
+      "path": "src/components/CustomTextField.vue",
+      "zeplinIds": [
+        "61d7091a56ea2065b83414e6"
+      ]
+    }
+  ]
+}

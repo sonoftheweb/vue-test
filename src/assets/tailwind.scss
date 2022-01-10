@@ -1,0 +1,28 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+.wrap {
+  display: flex;
+  justify-content: center;
+  .inner {
+    align-self: center;
+  }
+}
+
+.tooltip {
+  max-width: 208px;
+  .tail-bg {
+    border: 10px solid;
+    top: 8px;
+    left: -20px;
+  }
+  .tail-fg {
+    border: 10px solid;
+    left: -18px;
+    top: 8px;
+    border-color: transparent white transparent transparent;
+  }
+}
