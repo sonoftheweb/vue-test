@@ -5,34 +5,34 @@
       <div class="text-lg text-gray-300 uppercase font-bold">Value</div>
 
       <template v-for="(value, index) in values" :key="index">
-				<div class="text-gray-500 text-sm">{{ formatDate(value.date) }}</div>
+				<div class="text-gray-500 text-sm">{{ formatDate(value.created) }}</div>
 				<div class="text-gray-500 text-sm">{{ value.value }}</div>
 			</template>
 
     </div>
-    <div class="absolute bottom-4 text-sm text-gray-300">Last request took 57ms</div>
+    <div class="absolute bottom-4 text-sm text-gray-300">Last request took {{ lastRequestTime }}ms</div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useStore } from 'vuex'
-import { key } from '../store'
 
 export default defineComponent({
+  props: {
+    values: Array,
+    lastRequestTime: Number
+  },
   setup() {
-    const store = useStore(key)
-		const { values } = store.state
-    const formatDate = (date: Date) => {
-      return ("00" + (date.getMonth() + 1)).slice(-2) + "-" +
-            ("00" + date.getDate()).slice(-2) + "-" +
-            date.getFullYear() + " " +
-            ("00" + date.getHours()).slice(-2) + ":" +
-            ("00" + date.getMinutes()).slice(-2)
+    const formatDate = (date: string) => {
+      let parsedDate = new Date(date)
+      return ("00" + (parsedDate.getMonth() + 1)).slice(-2) + "-" +
+            ("00" + parsedDate.getDate()).slice(-2) + "-" +
+            parsedDate.getFullYear() + " " +
+            ("00" + parsedDate.getHours()).slice(-2) + ":" +
+            ("00" + parsedDate.getMinutes()).slice(-2)
     }
 
     return {
-      values,
       formatDate
     }
   },

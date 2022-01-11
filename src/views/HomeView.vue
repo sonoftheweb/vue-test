@@ -7,7 +7,7 @@
         :status="status" 
         :error-message="error"
         placeholder="Name"
-        @value="debouncedListener"
+        @value="nameValue=$event"
       />
       <div class="w-2/5 mx-auto mt-5">
         <button 
@@ -23,13 +23,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref, watch } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 import CustomTextField from '@/components/CustomTextField.vue'
-import useDebounce from '../composition/useDebounce'
-import axios from 'axios'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { key } from '../store'
+import { useNameTest } from '../composition/useApi'
 
 export default defineComponent({
   name: 'HomeView',
@@ -42,45 +41,36 @@ export default defineComponent({
     const nameValue = ref('')
     const error = ref('')
     const status = ref(false)
-    const { displayValue, debouncedValue, debouncedListener } : { displayValue: Ref<string>, debouncedValue:  Ref<string>, debouncedListener(e: string): void } = useDebounce(1000)
+    const { testName } = useNameTest()
 
-    watch(debouncedValue, (current) => {
-      if (! current.length ) {
-        status.value = false
-        error.value = ''
-        return
-      }
-      axios.get('https://random-data-api.com/api/name/random_name?size=100')
-        .then(({ data }) => {
-          data.find((name: { first_name: string; }) => {
-            console.log(current)
-            if (name.first_name === current || current === 'James') {
-              error.value = 'This name already taken. Please, try another'
-              status.value = false
-            } else {
-              error.value = ''
-              status.value = true
-            }
-          })
-        })
+    watch(() => nameValue.value, () => {
+      error.value = ''
+      status.value = false
     })
 
     const next = () => {
-      if (!debouncedValue.value.length) {
+      if (!nameValue.value.length) {
         error.value = 'This field is required'
-      }
-      if (error.value)
         return
-      
-      store.dispatch('setName', debouncedValue.value)
-      router.push('/values')
+      }
+
+      testName(nameValue.value, (result) => {
+        error.value = ''
+        status.value = true
+        setTimeout(() => {
+          store.dispatch('setName', result)
+          router.push('/values')
+        }, 1000)
+      }, (e) => {
+        console.log(e)
+        status.value = false
+        error.value = 'This name already taken. Please, try another'
+        return
+      })
     }
     
     return {
       nameValue,
-      displayValue, 
-      debouncedValue, 
-      debouncedListener,
       status,
       error,
       next
