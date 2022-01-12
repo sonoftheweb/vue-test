@@ -1,23 +1,15 @@
 <template>
-  <div class="flex h-screen">
-    <div class="m-auto w-3/5">
-      <h3 class="text-5xl font-bold mb-16 text-center leading-relaxed tracking-wider">Welcome, <span class="text-blue-500">{{ name }}!</span> <br/>Please, add value to list</h3>
-      <custom-text-field 
-        class="w-2/5 mx-auto" 
+  <div class="flex h-screen values-page">
+    <div class="m-auto w-full text-center">
+      <h1>Welcome, <span>{{ name }}!</span> <br/>Please, add value to list</h1>
+      <custom-text-field
+        class="input-component"
         :initial-value="value"
         :error-message="error"
         placeholder="Value"
         @value="handleChange" 
       />
-      <div class="w-2/5 mx-auto mt-5">
-        <button 
-          type="button"
-          @click="submit" 
-          class="w-full px-6 py-5 border border-transparent text-lg font-medium rounded-lg bg-blue-500 text-white focus:outline-none focus:ring-0"
-        >
-          Add
-        </button>
-      </div>
+      <button type="button" @click="submit">Add</button>
     </div>
   </div>  
   <values-list :values="values" :last-request-time="lastReqTime" :key="fieldKey"/>

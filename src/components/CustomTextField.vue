@@ -2,11 +2,11 @@
   <div>
     <div class="w-full">
       <label for="name" class="sr-only">Name</label>
-      <div class="mt-1 relative rounded-md shadow-sm">
-        <input 
+      <div class="mt-1 relative w-[400px] mx-auto">
+        <input
+					type="text"
           :value="value" 
-          @keyup="handleChange" 
-          class="w-full mx-auto border block px-7 py-5 focus:ring-0 sm:text-xl text-gray-900 focus:outline-none border-gray-300 rounded-lg" 
+          @keyup="handleChange"
           :placeholder="placeholder" 
         />
         <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none" v-if="status">
@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="relative" v-if="errorMessage">
-        <tool-tip class="absolute -top-14 left-full ml-3" :type="`error`" :text="errorMessage" />
+        <tool-tip class="absolute -top-20 left-[1230px] ml-3" :type="`error`" :text="errorMessage" />
       </div>
     </div>
   </div>

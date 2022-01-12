@@ -1,23 +1,16 @@
 <template>
-  <div class="flex h-screen">
-    <div class="m-auto w-3/5">
-      <h3 class="text-center text-5xl font-bold mb-16 leading-relaxed tracking-wider">Get started by choosing a name below</h3>
-      <custom-text-field 
-        class="w-2/5 mx-auto" 
-        :status="status" 
+  <div class="flex h-screen getting-started">
+    <div class="m-auto w-full text-center">
+      <h1>Get started by choosing a name below</h1>
+      <!-- class="w-2/5 mx-auto" -->
+      <custom-text-field
+        class="input-component"
+        :status="status"
         :error-message="error"
         placeholder="Name"
         @value="nameValue=$event"
       />
-      <div class="w-2/5 mx-auto mt-5">
-        <button 
-          type="button"
-          @click="next" 
-          class="w-full px-6 py-5 border border-transparent text-lg font-medium rounded-lg bg-blue-500 text-white focus:outline-none focus:ring-0"
-        >
-          Continue
-        </button>
-      </div>
+      <button type="button" @click="next">Continue</button>
     </div>
   </div>
 </template>
@@ -40,7 +33,7 @@ export default defineComponent({
     const router = useRouter()
     const nameValue = ref('')
     const error = ref('')
-    const status = ref(false)
+    const status = ref(true)
     const { testName } = useNameTest()
 
     watch(() => nameValue.value, () => {

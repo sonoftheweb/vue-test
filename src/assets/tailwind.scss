@@ -1,8 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
 @tailwind base;
 
 @tailwind components;
 
 @tailwind utilities;
+
+body {
+  font-family: 'Poppins', sans-serif;
+  h1 {
+    object-fit: contain;
+    font-size: 42px;
+    font-weight: 600;
+    margin: 0 0 48px;
+    color: #333;
+    span {
+      color: #3d9df5;
+    }
+    :placeholder {
+      color: #bdbdbd;
+      font-size: 16px;
+    }
+  }
+
+  .getting-started, .values-page {
+    input[type=text] {
+      width: 400px;
+      height: 52px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin: 48px auto 24px;
+      padding: 14px 21px;
+      object-fit: contain;
+      border-radius: 10px;
+      border: solid 1px #f2f2f2;
+      background-color: #fff;
+      color: rgb(63, 63, 63);
+      font-size: 16px;
+    }
+
+    button[type=button] {
+      width: 400px;
+      height: 52px;
+      align-items: center;
+      gap: 10px;
+      margin: 24px auto;
+      padding: 13px 32px 12px;
+      object-fit: contain;
+      border-radius: 10px;
+      background-color: #3d9df5;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+}
 
 .wrap {
   display: flex;
